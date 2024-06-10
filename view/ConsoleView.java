@@ -4,10 +4,10 @@ import interfaces.Publisher;
 public class ConsoleView implements interfaces.Listener{
     // public static final String ANSI_RED = "\u001B[31m";
     // public static final String ANSI_RESET = "\u001B[0m";
-    private final Publisher lmConsView;
+    private final Publisher nConsView;
     private String[] dataStrings = new String[4];
-    public ConsoleView(Publisher  lmConsView) {
-        this.lmConsView = lmConsView;
+    public ConsoleView(Publisher  nConsView) {
+        this.nConsView = nConsView;
     }
 
     public void run(){
@@ -16,27 +16,27 @@ public class ConsoleView implements interfaces.Listener{
         while (true) {
            
             //System.out.println("Input Id, Toyname, Chance, Count, separated by space ...");
-            System.out.println("1 - Add Toys");
+            System.out.println("1 - Add Animal");
             System.out.println("2 - Edit Chance by id");
             System.out.println("3 - Launch lotteryMachine");
             System.out.println("4 - Close");
             String choice = scanner.nextLine();
             if(choice.equals("1")){
-                System.out.println("Input Id, Toyname, Chance, Count, separated by space ...");
+                System.out.println("Input Id, Class, Order, Family, Name, BirthDate separated by space ...");
                 String next= scanner.nextLine();
                 dataStrings = next.split("\\s");
-                lmConsView.addLottable(this);
+                nConsView.addLottable(this);
             }
             else if(choice.equals("2")){
                 System.out.println("Input Id and Chance, separated by space ...");
                 String next= scanner.nextLine();
                 dataStrings = next.split("\\s");
-                lmConsView.editLottable(this);
+                nConsView.editLottable(this);
 
             }
             else if(choice.equals("3")){
 
-                lmConsView.launchLottery(this);
+                nConsView.launchLottery(this);
 
             }
             else if(choice.equals("4")){

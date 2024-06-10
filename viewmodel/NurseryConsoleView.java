@@ -3,12 +3,12 @@ package viewmodel;
 import interfaces.*;
 import model.LotteryMachine;
 
-public class LotteryConsoleView implements Publisher{
+public class NurseryConsoleView implements Publisher{
 
     private final LotteryMachine lm;
     private String result;
 
-    public LotteryConsoleView(LotteryMachine lm) {
+    public NurseryConsoleView(LotteryMachine lm) {
         this.lm=lm;
     }
 
