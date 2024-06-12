@@ -1,45 +1,49 @@
 package viewmodel;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import interfaces.*;
-import model.LotteryMachine;
+import model.Animals;
 
 public class NurseryConsoleView implements Publisher{
 
-    private final LotteryMachine lm;
+    private final Animals animals;
     private String result;
 
-    public NurseryConsoleView(LotteryMachine lm) {
-        this.lm=lm;
+    public NurseryConsoleView(Animals animals) {
+        this.animals=animals;
     }
 
-    public void addLot(String []dataStrings) {
+    public void addAnimal(String []dataStrings) {
 
-         lm.addLot(Integer.parseInt(dataStrings[0]), dataStrings[1], Byte.parseByte(dataStrings[2]), Integer.parseInt(dataStrings[3]));
+         animals.addAnimal(Integer.parseInt(dataStrings[0]), dataStrings[1], dataStrings[2], dataStrings[3], dataStrings[4], dataStrings[5], LocalDate.parse(dataStrings[6]));
+    }
+
+
+    @Override
+    public void addAnimalable(Listener listener) {
+
+        addAnimal(listener.getData());
     }
 
     @Override
-    public void addLottable(Listener listener) {
-        addLot(listener.getData());
-        //listener.showResult(result);
+    public ArrayList<String> getCommands(Listener listener) {
+        return getCommands(listener.getData());
     }
 
-    public void editLot(String []dataStrings) {
-
-        lm.editChance(Integer.parseInt(dataStrings[0]),Byte.parseByte(dataStrings[2]));
-   }
-
-    @Override
-    public void editLottable(Listener listener) {
-        addLot(listener.getData());
-       // listener.showResult(result);
+    private ArrayList<String> getCommands(String[] dataStrings) {
+        return animals.getCommands(Integer.parseInt(dataStrings[0]));
     }
-    public String launchMachine() {
-        result= lm.launchMachine();
-        return result;
-   }
+
     @Override
-    public void launchLottery(Listener listener) {
-        listener.showResult(launchMachine());
+    public void addCommand(Listener listener) {
+
+        addCommand(listener.getData());
+    }
+
+    private void addCommand(String[] dataStrings) {
+        animals.learnCommand(Integer.parseInt(dataStrings[0]), dataStrings[1]);
     }
     
 }

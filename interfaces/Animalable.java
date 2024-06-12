@@ -1,12 +1,14 @@
 package interfaces;
 
+import java.util.ArrayList;
+
 public interface Animalable {
 
     int getId();
-    String getName();
-    void setChance(byte chance);
-    int getCount();
-    void setCount(int count);
-    Byte getChance();
+    ArrayList<String> getCommands();
+    void addCommand(String command);
+    // int getCount();
+    // void setCount(int count);
+    // Byte getChance();
 
 }

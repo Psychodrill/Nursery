@@ -1,11 +1,13 @@
 package view;
+import java.util.ArrayList;
 import java.util.Scanner;
 import interfaces.Publisher;
 public class ConsoleView implements interfaces.Listener{
     // public static final String ANSI_RED = "\u001B[31m";
     // public static final String ANSI_RESET = "\u001B[0m";
     private final Publisher nConsView;
-    private String[] dataStrings = new String[4];
+    private String[] dataStrings = new String[7];
+    //private int animalId;
     public ConsoleView(Publisher  nConsView) {
         this.nConsView = nConsView;
     }
@@ -17,26 +19,31 @@ public class ConsoleView implements interfaces.Listener{
            
             //System.out.println("Input Id, Toyname, Chance, Count, separated by space ...");
             System.out.println("1 - Add Animal");
-            System.out.println("2 - Edit Chance by id");
-            System.out.println("3 - Launch lotteryMachine");
+            System.out.println("2 - Show animal commands");
+            System.out.println("3 - To learn new command");
             System.out.println("4 - Close");
             String choice = scanner.nextLine();
             if(choice.equals("1")){
-                System.out.println("Input Id, Class, Order, Family, Name, BirthDate separated by space ...");
+                System.out.println("Input Id, Class, Order, Family, Species, Name, BirthDate separated by space ...");
                 String next= scanner.nextLine();
                 dataStrings = next.split("\\s");
-                nConsView.addLottable(this);
+                nConsView.addAnimalable(this);
             }
             else if(choice.equals("2")){
-                System.out.println("Input Id and Chance, separated by space ...");
+                System.out.println("Input Id of animal ...");
                 String next= scanner.nextLine();
                 dataStrings = next.split("\\s");
-                nConsView.editLottable(this);
+                //animalId = Integer.parseInt(next);
+                //nConsView.editLottable(this);
+                System.out.println(nConsView.getCommands(this));
 
             }
             else if(choice.equals("3")){
 
-                nConsView.launchLottery(this);
+                System.out.println("Input aninal Id and command to learn separated by space ...");
+                String next= scanner.nextLine();
+                dataStrings = next.split("\\s");
+                nConsView.addCommand(this);
 
             }
             else if(choice.equals("4")){
