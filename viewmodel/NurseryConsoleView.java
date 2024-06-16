@@ -9,7 +9,7 @@ import model.Animals;
 public class NurseryConsoleView implements Publisher{
 
     private final Animals animals;
-    private String result;
+    //private String result;
 
     public NurseryConsoleView(Animals animals) {
         this.animals=animals;
@@ -17,7 +17,12 @@ public class NurseryConsoleView implements Publisher{
 
     public void addAnimal(String []dataStrings) {
 
-         animals.addAnimal(Integer.parseInt(dataStrings[0]), dataStrings[1], dataStrings[2], dataStrings[3], dataStrings[4], dataStrings[5], LocalDate.parse(dataStrings[6]));
+         try {
+            animals.addAnimal( dataStrings[0], dataStrings[1], dataStrings[2], dataStrings[3], dataStrings[4], LocalDate.parse(dataStrings[5]));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 

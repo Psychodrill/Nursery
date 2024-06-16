@@ -3,7 +3,6 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import interfaces.*;
@@ -12,7 +11,7 @@ import logger.Log;
 public class Animals {
     private static final Logger log = Log.log(Animals.class.getName());
     // private ArrayList<String> messages = new ArrayList<String>();
-
+    private int id=0;
     private ArrayList<MansFriend> animals = new ArrayList<MansFriend>();
 
     private Animalable findItem(int id){
@@ -26,8 +25,13 @@ public class Animals {
     } 
 
 
-    public void addAnimal(int id, String class_, String order, String family, String species, String name, LocalDate birthdate) {
+    public void addAnimal(String class_, String order, String family, String species, String name, LocalDate birthdate) throws Exception{
 
+        try(Counter counter = new Counter(this.id))
+        {
+            this.id=counter.add();
+            counter.close();
+        }
         if(species.toLowerCase().equals("cat")){
             this.animals.add(new Cat(id, class_, order, family, name, birthdate));
         }

@@ -1,5 +1,6 @@
 package view;
-import java.util.ArrayList;
+
+import java.io.FileOutputStream;
 import java.util.Scanner;
 import interfaces.Publisher;
 public class ConsoleView implements interfaces.Listener{
@@ -24,10 +25,11 @@ public class ConsoleView implements interfaces.Listener{
             System.out.println("4 - Close");
             String choice = scanner.nextLine();
             if(choice.equals("1")){
-                System.out.println("Input Id, Class, Order, Family, Species, Name, BirthDate separated by space ...");
+                System.out.println("Input Class, Order, Family, Species, Name, BirthDate separated by space ...");
                 String next= scanner.nextLine();
                 dataStrings = next.split("\\s");
                 nConsView.addAnimalable(this);
+
             }
             else if(choice.equals("2")){
                 System.out.println("Input Id of animal ...");
@@ -40,7 +42,7 @@ public class ConsoleView implements interfaces.Listener{
             }
             else if(choice.equals("3")){
 
-                System.out.println("Input aninal Id and command to learn separated by space ...");
+                System.out.println("Input animal Id and command to learn separated by space ...");
                 String next= scanner.nextLine();
                 dataStrings = next.split("\\s");
                 nConsView.addCommand(this);
